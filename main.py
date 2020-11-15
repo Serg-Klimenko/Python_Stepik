@@ -23,24 +23,88 @@
 # # Если выполняется деление и второе число равно 0, необходимо выводить строку "Деление на 0!".
 # # Обратите внимание, что на вход программе приходят вещественные числа.
 
-a = float(input())
-b = float(input())
-operation = input()
-if operation == "+":
-    print(a + b)
-elif operation == "-":
-    print(a - b)
-elif operation == "*":
-    print(a * b)
-elif operation == "pow":
-    print(a ** b)
-elif operation == "/" or operation == "mod" or operation == "div":
-    if b == 0:
-        print("Деление на 0!")
+# a = float(input())
+# b = float(input())
+# operation = input()
+# if operation == "+":
+#     print(a + b)
+# elif operation == "-":
+#     print(a - b)
+# elif operation == "*":
+#     print(a * b)
+# elif operation == "pow":
+#     print(a ** b)
+# elif operation == "/" or operation == "mod" or operation == "div":
+#     if b == 0:
+#         print("Деление на 0!")
+#     else:
+#         if operation == "/":
+#             print(a / b)
+#         elif operation == "mod":
+#             print(a % b)
+#         else:
+#             print(a // b)
+
+# 4. Комнаты бывают треугольные, прямоугольные и круглые. Чтобы быстро вычислять площадь, требуется
+# написать программу, на вход которой подаётся тип фигуры комнаты и соответствующие параметры,
+# которая бы выводила площадь получившейся комнаты.
+# Для числа π используют значение 3.14.
+# # Формат ввода:
+# # треугольник
+# a # b # c # # где a, b и c — длины сторон треугольника
+#
+# прямоугольник
+# a # b # # где a и b — длины сторон прямоугольника
+#
+# круг
+# r # # где r — радиус окружности
+
+# figure = input()
+# if figure == "треугольник":
+#     a = float(input())
+#     b = float(input())
+#     c = float(input())
+#     p = (a + b + c) / 2
+#     print((p*(p-a)*(p-b)*(p-c)) ** 0.5)
+# elif figure == "прямоугольник":
+#     a = float(input())
+#     b = float(input())
+#     print(a * b)
+# elif figure == "круг":
+#     a = float(input())
+#     print(3.14 * a * a)
+
+# 5. Напишите программу, которая получает на вход три целых числа, по одному числу в строке,
+# и выводит на консоль в три строки сначала максимальное, потом минимальное, после чего
+# оставшееся число.
+# # На ввод могут подаваться и повторяющиеся числа.
+
+# maxNum = int(input())
+# minNum = int(input())
+# lastNum = int(input())
+#
+# if minNum > maxNum:
+#     minNum, maxNum = maxNum, minNum
+# if lastNum > maxNum:
+#     lastNum, maxNum = maxNum, lastNum
+# if lastNum < minNum:
+#     lastNum, minNum = minNum, lastNum
+# print("%d\n%d\n%d" % (maxNum, minNum, lastNum))
+
+# 6. Напишите программу, считывающую с пользовательского ввода целое число n (неотрицательное),
+# выводящее это число в консоль вместе с правильным образом изменённым словом "программист",
+# для того, чтобы робот мог нормально общаться с людьми, например: 1 программист, 2 программиста,
+# 5 программистов.
+
+result = input()
+length = len(result)
+digit = int(result)
+result += " программист"
+if length > 1 and digit > 20:
+    digit %= (10 * (length - 1))
+if digit != 1:
+    if 2 <= digit <= 4:
+        result += "а"
     else:
-        if operation == "/":
-            print(a / b)
-        elif operation == "mod":
-            print(a % b)
-        else:
-            print(a // b)
+        result += "ов"
+print(result)
