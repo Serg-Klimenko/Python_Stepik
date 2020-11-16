@@ -97,14 +97,16 @@
 # 5 программистов.
 
 result = input()
-length = len(result)
 digit = int(result)
 result += " программист"
-if length > 1 and digit > 20:
-    digit %= (10 * (length - 1))
-if digit != 1:
-    if 2 <= digit <= 4:
-        result += "а"
-    else:
-        result += "ов"
+if 11 <= digit % 100 <= 14:
+    result += "ов"
+else:
+    if digit > 20:
+        digit %= 10
+    if digit != 1:
+        if 2 <= digit <= 4:
+            result += "а"
+        else:
+            result += "ов"
 print(result)
