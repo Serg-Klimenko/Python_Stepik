@@ -109,8 +109,8 @@
 # для каждого элемента этого списка вывести сумму двух его соседей. Для элементов списка,
 # являющихся крайними, одним из соседей считается элемент, находящий на противоположном конце этого списка.
 # Например, если на вход подаётся список "1 3 5 6 10", то на выход ожидается список "13 6 9 15 7" (без кавычек).
-## Если на вход пришло только одно число, надо вывести его же.
-## Вывод должен содержать одну строку с числами нового списка, разделёнными пробелом.
+# Если на вход пришло только одно число, надо вывести его же.
+# Вывод должен содержать одну строку с числами нового списка, разделёнными пробелом.
 
 # a = [int(i) for i in input().split()]
 # if len(a) == 1:
@@ -124,11 +124,30 @@
 # Для решения задачи может пригодиться метод sort списка.
 # Выводимые числа не должны повторяться, порядок их вывода может быть произвольным.
 
-a = [int(i) for i in input().split()]
-a.sort()
-i = 0
-while i < len(a):
-    step = a.count(a[i])
-    if step > 1:
-        print(a[i], end=" ")
-    i += step
+# a = [int(i) for i in input().split()]
+# a.sort()
+# i = 0
+# while i < len(a):
+#     step = a.count(a[i])
+#     if step > 1:
+#         print(a[i], end=" ")
+#     i += step
+
+# sapper
+# input col, row, mines from console
+col_field, row_field, quantity_mines = (int(i) for i in input().split())
+# fil matrix 0
+field = [[0 for j in range(row_field)] for i in range(col_field)]
+# input x, y mine positions in the table from console
+for i in range(quantity_mines):
+    col, row = (int(i) - 1 for i in input().split())
+    field[col][row] = "*"
+# count mines around each ceil
+for i in range(col_field):
+    for j in range(row_field):
+        # to be continue
+# output matrix
+for i in range(col_field):
+    for j in range(row_field):
+        print(field[i][j], end=' ')
+    print()
