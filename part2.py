@@ -136,7 +136,7 @@
 # sapper
 # input col, row, mines from console
 col_field, row_field, quantity_mines = (int(i) for i in input().split())
-# fil matrix 0
+# fil matrix .
 field = [[0 for j in range(row_field)] for i in range(col_field)]
 # input x, y mine positions in the table from console
 for i in range(quantity_mines):
@@ -145,9 +145,15 @@ for i in range(quantity_mines):
 # count mines around each ceil
 for i in range(col_field):
     for j in range(row_field):
-        # to be continue
+        if field[i][j] == "*":
+            for ki in range(i - 1, i + 2):
+                for kj in range(j - 1, j + 2):
+                    if 0 <= ki < col_field and 0 <= kj < row_field and field[ki][kj] != "*":
+                        field[ki][kj] += 1
 # output matrix
 for i in range(col_field):
     for j in range(row_field):
+        if field[i][j] == 0:
+            field[i][j] = "."
         print(field[i][j], end=' ')
     print()
