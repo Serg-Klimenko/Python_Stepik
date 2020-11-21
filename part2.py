@@ -135,25 +135,42 @@
 
 # sapper
 # input col, row, mines from console
-col_field, row_field, quantity_mines = (int(i) for i in input().split())
-# fil matrix .
-field = [[0 for j in range(row_field)] for i in range(col_field)]
-# input x, y mine positions in the table from console
-for i in range(quantity_mines):
-    col, row = (int(i) - 1 for i in input().split())
-    field[col][row] = "*"
-# +1 to each ceil near mine
-for i in range(col_field):
-    for j in range(row_field):
-        if field[i][j] == "*":
-            for ki in range(i - 1, i + 2):
-                for kj in range(j - 1, j + 2):
-                    if 0 <= ki < col_field and 0 <= kj < row_field and field[ki][kj] != "*":
-                        field[ki][kj] += 1
-# output matrix
-for i in range(col_field):
-    for j in range(row_field):
-        if field[i][j] == 0:
-            field[i][j] = "."
-        print(field[i][j], end=' ')
-    print()
+# col_field, row_field, quantity_mines = (int(i) for i in input().split())
+# # fil matrix .
+# field = [[0 for j in range(row_field)] for i in range(col_field)]
+# # input x, y mine positions in the table from console
+# for i in range(quantity_mines):
+#     col, row = (int(i) - 1 for i in input().split())
+#     field[col][row] = "*"
+# # +1 to each ceil near mine
+# for i in range(col_field):
+#     for j in range(row_field):
+#         if field[i][j] == "*":
+#             for ki in range(i - 1, i + 2):
+#                 for kj in range(j - 1, j + 2):
+#                     if 0 <= ki < col_field and 0 <= kj < row_field and field[ki][kj] != "*":
+#                         field[ki][kj] += 1
+# # output matrix
+# for i in range(col_field):
+#     for j in range(row_field):
+#         if field[i][j] == 0:
+#             field[i][j] = "."
+#         print(field[i][j], end=' ')
+#     print()
+
+# 10. Напишите программу, которая считывает с консоли числа (по одному в строке) до тех пор, пока сумма
+# введённых чисел не будет равна 0 и сразу после этого выводит сумму квадратов всех считанных чисел.
+# # Гарантируется, что в какой-то момент сумма введённых чисел окажется равной 0, после этого считывание
+# продолжать не нужно.
+# # В примере мы считываем числа 1, -3, 5, -6, -10, 13; в этот момент замечаем, что сумма этих чисел равна
+# нулю и выводим сумму их квадратов, не обращая внимания на то, что остались ещё не прочитанные значения.
+
+a = int(input())
+result = a * a
+s = a
+while s != 0:
+    a = int(input())
+    s += a
+    result += a * a
+print(result)
+
