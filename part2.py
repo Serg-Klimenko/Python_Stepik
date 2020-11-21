@@ -142,7 +142,7 @@ field = [[0 for j in range(row_field)] for i in range(col_field)]
 for i in range(quantity_mines):
     col, row = (int(i) - 1 for i in input().split())
     field[col][row] = "*"
-# count mines around each ceil
+# +1 to each ceil near mine
 for i in range(col_field):
     for j in range(row_field):
         if field[i][j] == "*":
