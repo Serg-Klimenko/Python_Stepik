@@ -213,16 +213,50 @@
 # элементов первой матрицы на позициях (i-1, j), (i+1, j), (i, j-1), (i, j+1).
 # У крайних символов соседний элемент находится с противоположной стороны матрицы.
 # В случае одной строки/столбца элемент сам себе является соседом по соответствующему направлению.
-col = 0
-matrix = []
-while True:
-    lst = [j for j in input().split()]
-    if lst[0] == "end":
-        break
-    matrix.append(lst)
-    col += 1
-row = len(matrix[0])
-for j in range(col):
-    for k in range(row):
-        print(int(matrix[j - 1][k]) + int(matrix[(j + 1) % col][k]) + int(matrix[j][k - 1]) + int(matrix[j][(k + 1) % row]), end=" ")
+# col = 0
+# matrix = []
+# while True:
+#     lst = [j for j in input().split()]
+#     if lst[0] == "end":
+#         break
+#     matrix.append(lst)
+#     col += 1
+# row = len(matrix[0])
+# for j in range(col):
+#     for k in range(row):
+#         print(int(matrix[j - 1][k]) + int(matrix[(j + 1) % col][k]) + int(matrix[j][k - 1]) + int(matrix[j][(k + 1) % row]), end=" ")
+#     print()
+
+# 14. Выведите таблицу размером n×n n \times n n×n, заполненную числами от 1 до n^2 по спирали,
+# выходящей из левого верхнего угла и закрученной по часовой стрелке,
+
+n = int(input())
+if n == 1:
+    print(1)
+    quit()
+matrix = [[0 for i in range(n)] for j in range(n)]
+val = 0
+start = 0
+end = n - 1
+while val < n ** 2:
+    for i in range(start, end):
+        val += 1
+        matrix[start][i] = val
+    for i in range(start, end):
+        val += 1
+        matrix[i][end] = val
+    for i in range(end, start, -1):
+        val += 1
+        matrix[end][i] = val
+    for i in range(end, start, -1):
+        val += 1
+        matrix[i][start] = val
+    start += 1
+    end -= 1
+    if n % 2 != 0 and start >= end:
+        val += 1
+        matrix[start][start] = val
+for i in range(n):
+    for j in range(n):
+        print(matrix[i][j], end=" ")
     print()
