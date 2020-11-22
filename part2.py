@@ -213,12 +213,16 @@
 # элементов первой матрицы на позициях (i-1, j), (i+1, j), (i, j-1), (i, j+1).
 # У крайних символов соседний элемент находится с противоположной стороны матрицы.
 # В случае одной строки/столбца элемент сам себе является соседом по соответствующему направлению.
-i = 0
+col = 0
 matrix = []
 while True:
     lst = [j for j in input().split()]
-    matrix.append(lst)
-    if matrix[i][0] == "end":
+    if lst[0] == "end":
         break
-    i += 1
-print(len(matrix))
+    matrix.append(lst)
+    col += 1
+row = len(matrix[0])
+for j in range(col):
+    for k in range(row):
+        print(int(matrix[j - 1][k]) + int(matrix[(j + 1) % col][k]) + int(matrix[j][k - 1]) + int(matrix[j][(k + 1) % row]), end=" ")
+    print()
