@@ -37,21 +37,37 @@
 # Требуется реализовать только эту функцию, кода вне её не должно быть.
 # Функция не должна вызывать внутри себя функции input и print.
 
-def update_dictionary(d, key, value):
-    if d.get(key) is None:
-        k = 2 * key
-    else:
-        k = key
-    if d.get(k) is None:
-        d.update({k: [value]})
-    else:
-        d[k].append(value)
+# def update_dictionary(d, key, value):
+#     if d.get(key) is None:
+#         k = 2 * key
+#     else:
+#         k = key
+#     if d.get(k) is None:
+#         d.update({k: [value]})
+#     else:
+#         d[k].append(value)
+#
+#
+# d = {}
+# print(update_dictionary(d, 1, -1))  # None
+# print(d)  # {2: [-1]}
+# update_dictionary(d, 2, -2)
+# print(d)  # {2: [-1, -2]}
+# update_dictionary(d, 1, -3)
+# print(d)  # {2: [-1, -2, -3]}
 
+# 3.2.2 Программа должна считывать одну строку со стандартного ввода и выводить для каждого
+# уникального слова в этой строке число его повторений (без учёта регистра) в формате "слово количество"
+# Порядок вывода слов может быть произвольным, каждое уникальное слово должно выводиться только один раз.
 
-d = {}
-print(update_dictionary(d, 1, -1))  # None
-print(d)  # {2: [-1]}
-update_dictionary(d, 2, -2)
-print(d)  # {2: [-1, -2]}
-update_dictionary(d, 1, -3)
-print(d)  # {2: [-1, -2, -3]}
+s = [i.lower() for i in input().split()]
+result = {}
+for x in s:
+    result.setdefault(x)
+    if result[x] is None:
+        result[x] = 1
+    else:
+        result[x] += 1
+for x in result:
+    print(x, result[x])
+
