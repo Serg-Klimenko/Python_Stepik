@@ -60,14 +60,32 @@
 # уникального слова в этой строке число его повторений (без учёта регистра) в формате "слово количество"
 # Порядок вывода слов может быть произвольным, каждое уникальное слово должно выводиться только один раз.
 
-s = [i.lower() for i in input().split()]
-result = {}
-for x in s:
-    result.setdefault(x)
-    if result[x] is None:
-        result[x] = 1
-    else:
-        result[x] += 1
-for x in result:
-    print(x, result[x])
+# s = [i.lower() for i in input().split()]
+# result = {}
+# for x in s:
+#     result.setdefault(x)
+#     if result[x] is None:
+#         result[x] = 1
+#     else:
+#         result[x] += 1
+# for x in result:
+#     print(x, result[x])
 
+# 3.4.1 Напишите программу, которая считывает из файла строку, соответствующую тексту, сжатому с помощью
+# кодирования повторов, и производит обратную операцию, получая исходный текст.
+# Запишите полученный текст в файл и прикрепите его, как ответ на это задание.
+# В исходном тексте не встречаются цифры, так что код однозначно интерпретируем.
+numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+with open("input.txt") as inf:
+    s = inf.readline().strip()
+i = len(s) - 1
+res = ""
+while i > 0:
+    if s[i - 1] not in numbers:
+        res = s[i - 1] * int(s[i]) + res
+    else:
+        res = s[i - 2] * int(s[i - 1] + s[i]) + res
+        i -= 1
+    i -= 2
+with open("output.txt", "w") as ouf:
+    ouf.write(res)
