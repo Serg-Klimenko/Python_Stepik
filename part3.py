@@ -96,17 +96,43 @@
 # Если таких слов несколько, вывести лексикографически первое (можно использовать оператор < для строк).
 # В качестве ответа укажите вывод программы, а не саму программу.
 # Слова, написанные в разных регистрах, считаются одинаковыми.
-result = {}
-with open("input.txt") as inf:
+# Пример текста - abc a bCd bC AbC BC BCD bcd ABC
+# result = {}
+# with open("input.txt") as inf:
+#     for line in inf:
+#         line = line.lower().strip().split()
+#         for word in line:
+#             result.setdefault(word)
+#             if result[word] is None:
+#                 result[word] = 1
+#             else:
+#                 result[word] += 1
+# for x, y in result.items():
+#     if y == max(result.values()):
+#         print(x, y)
+#         break
+
+# 3.4.3 Имеется файл с данными по успеваемости абитуриентов. Он представляет из себя набор строк,
+# где в каждой строке записана следующая информация:
+# Фамилия;Оценка_по_математике;Оценка_по_физике;Оценка_по_русскому_языку
+# Поля внутри строки разделены точкой с запятой, оценки — целые числа.
+# Напишите программу, которая считывает исходный файл с подобной структурой и для каждого абитуриента
+# записывает его среднюю оценку по трём предметам на отдельной строке, соответствующей этому абитуриенту,
+# в файл с ответом.
+# Также вычислите средние баллы по математике, физике и русскому языку по всем абитуриентам и добавьте
+# полученные значения, разделённые пробелом, последней строкой в файл с ответом.
+# В качестве ответа на задание прикрепите полученный файл со средними оценками по каждому ученику и одной
+# строкой со средними оценками по трём предметам.
+
+
+sum_m, sum_f, sum_r, count = 0, 0, 0, 0
+with open("input.txt", encoding="utf-8") as inf, open("output.txt", "w") as ouf:
     for line in inf:
-        line = line.lower().strip().split()
-        for word in line:
-            result.setdefault(word)
-            if result[word] is None:
-                result[word] = 1
-            else:
-                result[word] += 1
-for x, y in result.items():
-    if y == max(result.values()):
-        print(x, y)
-        break
+        line = line.strip().split(";")
+        if len(line) > 1:
+            ouf.writelines(str((int(line[1]) + int(line[2]) + int(line[3])) / 3) + "\n")
+            sum_m += int(line[1])
+            sum_f += int(line[2])
+            sum_r += int(line[3])
+            count += 1
+    ouf.write(str(sum_m / count) + " " + str(sum_f / count) + " " + str(sum_r / count))
