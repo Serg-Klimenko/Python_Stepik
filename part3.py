@@ -75,17 +75,38 @@
 # кодирования повторов, и производит обратную операцию, получая исходный текст.
 # Запишите полученный текст в файл и прикрепите его, как ответ на это задание.
 # В исходном тексте не встречаются цифры, так что код однозначно интерпретируем.
-numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+# пример текста - Y1L7B13a10D10K3h17a1l3X16v3H20m9p16P9y2t5Q17J6t15U5f14E13u11c3q7
+# numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+# with open("input.txt") as inf:
+#     s = inf.readline().strip()
+# i = len(s) - 1
+# res = ""
+# while i > 0:
+#     if s[i - 1] not in numbers:
+#         res = s[i - 1] * int(s[i]) + res
+#     else:
+#         res = s[i - 2] * int(s[i - 1] + s[i]) + res
+#         i -= 1
+#     i -= 2
+# with open("output.txt", "w") as ouf:
+#     ouf.write(res)
+
+# 3.4.2 Напишите программу, которая считывает текст из файла (в файле может быть больше одной строки)
+# и выводит самое частое слово в этом тексте и через пробел то, сколько раз оно встретилось.
+# Если таких слов несколько, вывести лексикографически первое (можно использовать оператор < для строк).
+# В качестве ответа укажите вывод программы, а не саму программу.
+# Слова, написанные в разных регистрах, считаются одинаковыми.
+result = {}
 with open("input.txt") as inf:
-    s = inf.readline().strip()
-i = len(s) - 1
-res = ""
-while i > 0:
-    if s[i - 1] not in numbers:
-        res = s[i - 1] * int(s[i]) + res
-    else:
-        res = s[i - 2] * int(s[i - 1] + s[i]) + res
-        i -= 1
-    i -= 2
-with open("output.txt", "w") as ouf:
-    ouf.write(res)
+    for line in inf:
+        line = line.lower().strip().split()
+        for word in line:
+            result.setdefault(word)
+            if result[word] is None:
+                result[word] = 1
+            else:
+                result[word] += 1
+for x, y in result.items():
+    if y == max(result.values()):
+        print(x, y)
+        break
