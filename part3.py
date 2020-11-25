@@ -124,15 +124,30 @@
 # В качестве ответа на задание прикрепите полученный файл со средними оценками по каждому ученику и одной
 # строкой со средними оценками по трём предметам.
 
+# sum_m, sum_f, sum_r, count = 0, 0, 0, 0
+# with open("input.txt", encoding="utf-8") as inf, open("output.txt", "w") as ouf:
+#     for line in inf:
+#         line = line.strip().split(";")
+#         if len(line) > 1:
+#             ouf.writelines(str((int(line[1]) + int(line[2]) + int(line[3])) / 3) + "\n")
+#             sum_m += int(line[1])
+#             sum_f += int(line[2])
+#             sum_r += int(line[3])
+#             count += 1
+#     ouf.write(str(sum_m / count) + " " + str(sum_f / count) + " " + str(sum_r / count))
 
-sum_m, sum_f, sum_r, count = 0, 0, 0, 0
-with open("input.txt", encoding="utf-8") as inf, open("output.txt", "w") as ouf:
-    for line in inf:
-        line = line.strip().split(";")
-        if len(line) > 1:
-            ouf.writelines(str((int(line[1]) + int(line[2]) + int(line[3])) / 3) + "\n")
-            sum_m += int(line[1])
-            sum_f += int(line[2])
-            sum_r += int(line[3])
-            count += 1
-    ouf.write(str(sum_m / count) + " " + str(sum_f / count) + " " + str(sum_r / count))
+# import sys
+# print(*sys.argv[1:])
+
+# 3.6.1 Скачайте файл. В нём указан адрес другого файла, который нужно скачать с использованием модуля
+# requests и посчитать число строк в нём. Используйте функцию get для получения файла (имеет смысл
+# вызвать метод strip к передаваемому параметру, чтобы убрать пробельные символы по краям).
+# После получения файла вы можете проверить результат, обратившись к полю text. Если результат работы
+# скрипта не принимается, проверьте поле url на правильность. Для подсчёта количества строк разбейте
+# текст с помощью метода splitlines.
+import requests
+with open("input.txt") as inf:
+    file_name = inf.readline().strip()
+r = requests.get(file_name)
+print(len(r.text.splitlines()))
+
