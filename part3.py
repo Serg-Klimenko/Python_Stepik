@@ -157,12 +157,48 @@
 # Все файлы располагаются в каталоге по адресу:
 # https://stepic.org/media/attachments/course67/3.6.3/
 # Загрузите содержимое последнего файла из набора, как ответ на это задание.
-import requests
-file_path = "https://stepic.org/media/attachments/course67/3.6.3/699991.txt"
-while True:
-    r = requests.get(file_path)
-    if r.text.splitlines()[0].split()[0] == "We":
-        print(r.text)
-        break
+# import requests
+# file_path = "https://stepic.org/media/attachments/course67/3.6.3/699991.txt"
+# while True:
+#     r = requests.get(file_path)
+#     if r.text.splitlines()[0].split()[0] == "We":
+#         print(r.text)
+#         break
+#     else:
+#         file_path = "https://stepic.org/media/attachments/course67/3.6.3/" + r.text.strip()
+
+# 3.7.1 Напишите программу, которая принимает на стандартный вход список игр футбольных команд
+# с результатом матча и выводит на стандартный вывод сводную таблицу результатов всех матчей.
+# # За победу команде начисляется 3 очка, за поражение — 0, за ничью — 1.
+# # Формат ввода следующий:
+# В первой строке указано целое число n — количество завершенных игр.
+# После этого идет n строк, в которых записаны результаты игры в следующем формате:
+# Первая_команда;Забито_первой_командой;Вторая_команда;Забито_второй_командой
+# # Вывод программы необходимо оформить следующим образом:
+# Команда:Всего_игр Побед Ничьих Поражений Всего_очков
+# Порядок вывода команд произвольный.
+n = int(input())
+table = {}
+for i in range(n):
+    game = [i for i in input().split(";")]
+    if game[0] not in table.keys():
+        table.setdefault(game[0], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
+    if game[2] not in table.keys():
+        table.setdefault(game[2], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
+    table[game[0]]["played"] += 1
+    table[game[2]]["played"] += 1
+    if int(game[1]) > int(game[3]):
+        table[game[0]]["won"] += 1
+        table[game[2]]["lost"] += 1
+        table[game[0]]["points"] += 3
+    elif int(game[1]) < int(game[3]):
+        table[game[2]]["won"] += 1
+        table[game[0]]["lost"] += 1
+        table[game[2]]["points"] += 3
     else:
-        file_path = "https://stepic.org/media/attachments/course67/3.6.3/" + r.text.strip()
+        table[game[0]]["drawn"] += 1
+        table[game[2]]["drawn"] += 1
+        table[game[0]]["points"] += 1
+        table[game[2]]["points"] += 1
+for key, value in table.items():
+    print(key + ":", *table[key].values())
