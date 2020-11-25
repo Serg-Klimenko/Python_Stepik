@@ -145,9 +145,24 @@
 # После получения файла вы можете проверить результат, обратившись к полю text. Если результат работы
 # скрипта не принимается, проверьте поле url на правильность. Для подсчёта количества строк разбейте
 # текст с помощью метода splitlines.
-import requests
-with open("input.txt") as inf:
-    file_name = inf.readline().strip()
-r = requests.get(file_name)
-print(len(r.text.splitlines()))
+# import requests
+# with open("input.txt") as inf:
+#     file_name = inf.readline().strip()
+# r = requests.get(file_name)
+# print(len(r.text.splitlines()))
 
+# 3.6.2 Имеется набор файлов, каждый из которых, кроме последнего, содержит имя следующего файла.
+# Первое слово в тексте последнего файла: "We".
+# Скачайте предложенный файл. В нём содержится ссылка на первый файл из этого набора.
+# Все файлы располагаются в каталоге по адресу:
+# https://stepic.org/media/attachments/course67/3.6.3/
+# Загрузите содержимое последнего файла из набора, как ответ на это задание.
+import requests
+file_path = "https://stepic.org/media/attachments/course67/3.6.3/699991.txt"
+while True:
+    r = requests.get(file_path)
+    if r.text.splitlines()[0].split()[0] == "We":
+        print(r.text)
+        break
+    else:
+        file_path = "https://stepic.org/media/attachments/course67/3.6.3/" + r.text.strip()
