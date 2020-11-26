@@ -177,28 +177,61 @@
 # # Вывод программы необходимо оформить следующим образом:
 # Команда:Всего_игр Побед Ничьих Поражений Всего_очков
 # Порядок вывода команд произвольный.
-n = int(input())
-table = {}
-for i in range(n):
-    game = [i for i in input().split(";")]
-    if game[0] not in table.keys():
-        table.setdefault(game[0], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
-    if game[2] not in table.keys():
-        table.setdefault(game[2], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
-    table[game[0]]["played"] += 1
-    table[game[2]]["played"] += 1
-    if int(game[1]) > int(game[3]):
-        table[game[0]]["won"] += 1
-        table[game[2]]["lost"] += 1
-        table[game[0]]["points"] += 3
-    elif int(game[1]) < int(game[3]):
-        table[game[2]]["won"] += 1
-        table[game[0]]["lost"] += 1
-        table[game[2]]["points"] += 3
-    else:
-        table[game[0]]["drawn"] += 1
-        table[game[2]]["drawn"] += 1
-        table[game[0]]["points"] += 1
-        table[game[2]]["points"] += 1
-for key, value in table.items():
-    print(key + ":", *table[key].values())
+# n = int(input())
+# table = {}
+# for i in range(n):
+#     game = [i for i in input().split(";")]
+#     if game[0] not in table.keys():
+#         table.setdefault(game[0], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
+#     if game[2] not in table.keys():
+#         table.setdefault(game[2], {"played": 0, "won": 0, "drawn": 0, "lost": 0, "points": 0})
+#     table[game[0]]["played"] += 1
+#     table[game[2]]["played"] += 1
+#     if int(game[1]) > int(game[3]):
+#         table[game[0]]["won"] += 1
+#         table[game[2]]["lost"] += 1
+#         table[game[0]]["points"] += 3
+#     elif int(game[1]) < int(game[3]):
+#         table[game[2]]["won"] += 1
+#         table[game[0]]["lost"] += 1
+#         table[game[2]]["points"] += 3
+#     else:
+#         table[game[0]]["drawn"] += 1
+#         table[game[2]]["drawn"] += 1
+#         table[game[0]]["points"] += 1
+#         table[game[2]]["points"] += 1
+# for key, value in table.items():
+#     print(key + ":", *table[key].values())
+
+# 3.7.2 Напишите программу, которая умеет шифровать и расшифровывать шифр подстановки.
+# Программа принимает на вход две строки одинаковой длины, на первой строке записаны символы
+# исходного алфавита, на второй строке — символы конечного алфавита, после чего идёт строка,
+# которую нужно зашифровать переданным ключом, и ещё одна строка, которую нужно расшифровать.
+# # Пусть, например, на вход программе передано:
+# abcd
+# *d%#
+# abacabadaba
+# *%*d*%
+# Это значит, что символ a исходного сообщения заменяется на символ * в шифре, b заменяется на d, c —
+# на % и d — на #.
+# Нужно зашифровать строку abacabadaba и расшифровать строку #*%*d*% с помощью этого шифра.
+# Получаем следующие строки, которые и передаём на вывод программы:
+# *d*%*d*#*d*
+# dacabac
+
+s0 = input()
+s1 = input()
+s2 = input()
+s3 = input()
+code = {}
+uncode = {}
+for i in range(len(s0)):
+    code.setdefault(s0[i], s1[i])
+    uncode.setdefault(s1[i], s0[i])
+result = ""
+for char in s2:
+    print(code[char], end="")
+print()
+for char in s3:
+    print(uncode[char], end="")
+print()
