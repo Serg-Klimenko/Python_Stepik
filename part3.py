@@ -244,12 +244,32 @@
 # чего l строк текста.
 # Выведите уникальные "ошибки" в произвольном порядке. Работу производите без учёта регистра.
 
-n = int(input())
-dictionary = {input().lower() for i in range(n)}
-m = int(input())
-text = set()
-for i in range(m):
-    line = [j for j in input().lower().split()]
-    text.update(line)
-print(*text.difference(dictionary), sep="\n")
+# n = int(input())
+# dictionary = {input().lower() for i in range(n)}
+# m = int(input())
+# text = set()
+# for i in range(m):
+#     line = [j for j in input().lower().split()]
+#     text.update(line)
+# print(*text.difference(dictionary), sep="\n")
 
+# 3.7.4 первое слово — это направление, в котором должна двигаться черепашка, а число после
+# слова — это положительное расстояние в сантиметрах, которое должна пройти черепашка.
+# Написать программу, которая выведет точку, в которой окажется черепашка
+# после всех команд. Для простоты они решили считать, что движение начинается в точке (0, 0), и
+# движение на восток увеличивает первую координату, а на север — вторую.
+# Программе подаётся на вход число команд n, которые нужно выполнить черепашке, после чего n
+# строк с самими командами. Вывести нужно два числа в одну строку: первую и вторую координату
+# конечной точки черепашки. Все координаты целочисленные.
+x, y = 0, 0
+for i in range(int(input())):
+    direction, distance = input().split()
+    if direction == "север":
+        y += int(distance)
+    elif direction == "юг":
+        y -= int(distance)
+    elif direction == "восток":
+        x += int(distance)
+    else:
+        x -= int(distance)
+print(x, y)
