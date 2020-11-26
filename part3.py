@@ -219,19 +219,37 @@
 # *d*%*d*#*d*
 # dacabac
 
-s0 = input()
-s1 = input()
-s2 = input()
-s3 = input()
-code = {}
-uncode = {}
-for i in range(len(s0)):
-    code.setdefault(s0[i], s1[i])
-    uncode.setdefault(s1[i], s0[i])
-result = ""
-for char in s2:
-    print(code[char], end="")
-print()
-for char in s3:
-    print(uncode[char], end="")
-print()
+# s0 = input()
+# s1 = input()
+# s2 = input()
+# s3 = input()
+# code = {}
+# uncode = {}
+# for i in range(len(s0)):
+#     code.setdefault(s0[i], s1[i])
+#     uncode.setdefault(s1[i], s0[i])
+# result = ""
+# for char in s2:
+#     print(code[char], end="")
+# print()
+# for char in s3:
+#     print(uncode[char], end="")
+# print()
+
+# 3.7.3 Простейшая система проверки орфографии может быть основана на использовании списка известных слов.
+# Если введённое слово не найдено в этом списке, оно помечается как "ошибка".
+# Попробуем написать подобную систему.
+# На вход программе первой строкой передаётся количество d известных нам слов, после чего на d
+# строках указываются эти слова. Затем передаётся количество l строк текста для проверки, после
+# чего l строк текста.
+# Выведите уникальные "ошибки" в произвольном порядке. Работу производите без учёта регистра.
+
+n = int(input())
+dictionary = {input().lower() for i in range(n)}
+m = int(input())
+text = set()
+for i in range(m):
+    line = [j for j in input().lower().split()]
+    text.update(line)
+print(*text.difference(dictionary), sep="\n")
+
