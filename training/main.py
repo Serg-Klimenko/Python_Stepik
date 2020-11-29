@@ -39,10 +39,12 @@
 # Формат вывода:
 # Единственная строка, в которой записана фраза: Result: "..." , где вместо многоточия внутри
 # кавычек записана зашифрованная последовательность.
-abc = ' abcdefghijklmnopqrstuvwxyz'
-shift = int(input())
-string = input().lstrip().rstrip()
-result = ''
-for char in string:
-    result += abc[(abc.index(char) + shift) % len(abc)]
-print('Result: "' + result + '"')
+# abc = ' abcdefghijklmnopqrstuvwxyz'
+# shift = int(input())
+# string = input().lstrip().rstrip()
+# result = ''
+# for char in string:
+#     result += abc[(abc.index(char) + shift) % len(abc)]
+# print('Result: "' + result + '"')
+# -----------------------------------------------------------------------------------------------------
+
