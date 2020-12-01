@@ -144,23 +144,59 @@
 # состоящие из строчных латинских букв.
 # Формат выходных данных
 # Для каждого запроса get выведите в отдельной строке его результат.
-namespaces = {'global': ['global']}
-for i in range(int(input())):
-    s = input().split()
-    if s[0] == 'create':
-        namespaces.setdefault(s[1], [])
-        namespaces[s[1]].append(s[2])
-    elif s[0] == 'add':
-        namespaces[s[1]].append(s[2])
-    else:
-        result = 'None'
-        if s[2] in namespaces[s[1]]:
-            result = s[1]
+# namespaces = {'global': ['global']}
+# for i in range(int(input())):
+#     s = input().split()
+#     if s[0] == 'create':
+#         namespaces.setdefault(s[1], [])
+#         namespaces[s[1]].append(s[2])
+#     elif s[0] == 'add':
+#         namespaces[s[1]].append(s[2])
+#     else:
+#         result = 'None'
+#         if s[2] in namespaces[s[1]]:
+#             result = s[1]
+#         else:
+#             key = s[1]
+#             while key != 'global' and s[2] not in namespaces[[key][0]]:
+#                 key = namespaces[key][0]
+#                 if s[2] in namespaces[[key][0]]:
+#                     result = key
+#                     break
+#         print(result)
+# ------------------------------------------------------------------------------------------------
+# 1.5.1
+#
+# Реализуйте класс MoneyBox, для работы с виртуальной копилкой.
+# Каждая копилка имеет ограниченную вместимость, которая выражается целым числом – количеством
+# монет, которые можно положить в копилку. Класс должен поддерживать информацию о количестве
+# монет в копилке, предоставлять возможность добавлять монеты в копилку и узнавать, можно ли
+# добавить в копилку ещё какое-то количество монет, не превышая ее вместимость.
+# # Класс должен иметь следующий вид
+#
+# class MoneyBox:
+#     def __init__(self, capacity):
+#     # конструктор с аргументом – вместимость копилки
+#
+#     def can_add(self, v):
+#         # True, если можно добавить v монет, False иначе
+#
+#     def add(self, v):
+#         # положить v монет в копилку
+#
+# При создании копилки, число монет в ней равно 0.
+# Примечание:
+# Гарантируется, что метод add(self, v) будет вызываться только если can_add(self, v) – True
+class MoneyBox:
+    def __init__(self, capacity):
+        self.count = 0
+        self.capacity = capacity
+
+    def can_add(self, v):
+        if self.count + v > self.capacity:
+            return False
         else:
-            key = s[1]
-            while key != 'global' and s[2] not in namespaces[[key][0]]:
-                key = namespaces[key][0]
-                if s[2] in namespaces[[key][0]]:
-                    result = key
-                    break
-        print(result)
+            return True
+
+    def add(self, v):
+        self.count += v
