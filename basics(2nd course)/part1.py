@@ -144,3 +144,23 @@
 # состоящие из строчных латинских букв.
 # Формат выходных данных
 # Для каждого запроса get выведите в отдельной строке его результат.
+namespaces = {'global': ['global']}
+for i in range(int(input())):
+    s = input().split()
+    if s[0] == 'create':
+        namespaces.setdefault(s[1], [])
+        namespaces[s[1]].append(s[2])
+    elif s[0] == 'add':
+        namespaces[s[1]].append(s[2])
+    else:
+        result = 'None'
+        if s[2] in namespaces[s[1]]:
+            result = s[1]
+        else:
+            key = s[1]
+            while key != 'global' and s[2] not in namespaces[[key][0]]:
+                key = namespaces[key][0]
+                if s[2] in namespaces[[key][0]]:
+                    result = key
+                    break
+        print(result)
