@@ -238,27 +238,89 @@
 # buf.get_current_part() # вернуть [1]
 # Обратите внимание, что во время выполнения метода add выводить сумму пятерок может
 # потребоваться несколько раз до тех пор, пока в буфере не останется менее пяти элементов.
+# class Buffer:
+#     def __init__(self):
+#         self.buffer = []
+#
+#     def add(self, *a):
+#         self.buffer.extend(a)
+#         while len(self.buffer) >= 5:
+#             print(sum(self.buffer[:5]))
+#             self.buffer = self.buffer[5:]
+#
+#     def get_current_part(self):
+#         print(self.buffer) # change print to return
+#
+#
+# buf = Buffer()
+# buf.add(1, 2, 3)
+# buf.get_current_part() # вернуть [1, 2, 3]
+# buf.add(4, 5, 6) # print(15) – вывод суммы первой пятерки элементов
+# buf.get_current_part() # вернуть [6]
+# buf.add(7, 8, 9, 10) # print(40) – вывод суммы второй пятерки элементов
+# buf.get_current_part() # вернуть []
+# buf.add(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) # print(5), print(5) – вывод сумм третьей и четвертой пятерки
+# buf.get_current_part() # вернуть [1]
+# --------------------------------------------------------------------------------------------
 
-class Buffer:
-    def __init__(self):
-        self.buffer = []
+# 1.6.1  Наследование классов
+# Вам дано описание наследования классов в следующем формате.
+# <имя класса 1> : <имя класса 2> <имя класса 3> ... <имя класса k>
+# Это означает, что класс 1 отнаследован от класса 2, класса 3, и т. д.
+# Или эквивалентно записи:
+# class Class1(Class2, Class3 ... ClassK):
+#     pass
+# Класс A является прямым предком класса B, если B отнаследован от A:
+# class B(A):
+#     pass
+# Класс A является предком класса B, если
+#     A = B;
+#     A - прямой предок B
+#     существует такой класс C, что C - прямой предок B и A - предок C
+# Например:
+# class B(A):
+#     pass
+# class C(B):
+#     pass
+# A -- предок С
+# Вам необходимо отвечать на запросы, является ли один класс предком другого класса
+# Важное примечание:  Создавать классы не требуется.
+# Мы просим вас промоделировать этот процесс, и понять существует ли путь от одного класса до другого.
+# Формат входных данных
+# В первой строке входных данных содержится целое число n - число классов.
+# В следующих n строках содержится описание наследования классов. В i-й строке указано от
+# каких классов наследуется i-й класс. Обратите внимание, что класс может ни от кого не
+# наследоваться. Гарантируется, что класс не наследуется сам от себя (прямо или косвенно),
+# что класс не наследуется явно от одного класса более одного раза.
+#
+# В следующей строке содержится число q - количество запросов.
+# В следующих q строках содержится описание запросов в формате <имя класса 1> <имя класса 2>.
+# Имя класса – строка, состоящая из символов латинского алфавита, длины не более 50.
+# Формат выходных данных
+# Для каждого запроса выведите в отдельной строке слово "Yes", если класс 1 является предком
+# класса 2, и "No", если не является.
+classes = {}
 
-    def add(self, *a):
-        self.buffer.extend(a)
-        while len(self.buffer) >= 5:
-            print(sum(self.buffer[:5]))
-            self.buffer = self.buffer[5:]
 
-    def get_current_part(self):
-        print(self.buffer) # change print to return
+def is_parent(parent, child):
+    if child in classes.keys():
+        if child == parent or parent in classes[child]:
+            return True
+        elif not classes[child]:
+            return False
+        else:
+            for j in classes[child]:
+                if j in classes.keys() and is_parent(parent, j):
+                    return True
+    return False
 
 
-buf = Buffer()
-buf.add(1, 2, 3)
-buf.get_current_part() # вернуть [1, 2, 3]
-buf.add(4, 5, 6) # print(15) – вывод суммы первой пятерки элементов
-buf.get_current_part() # вернуть [6]
-buf.add(7, 8, 9, 10) # print(40) – вывод суммы второй пятерки элементов
-buf.get_current_part() # вернуть []
-buf.add(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) # print(5), print(5) – вывод сумм третьей и четвертой пятерки
-buf.get_current_part() # вернуть [1]
+for i in range(int(input())):
+    line = input().replace(':', ' ').split()
+    classes.setdefault(line[0], line[1:])
+for i in range(int(input())):
+    parent, child = input().split()
+    if is_parent(parent, child):
+        print('Yes')
+    else:
+        print('No')
