@@ -13,30 +13,50 @@
 # Выведите в отдельной строке имя каждого исключения, обработку которого можно удалить из кода,
 # не изменив при этом поведение программы. Имена следует выводить в том же порядке, в котором они
 # идут во входных данных.
-classes = {}
+# classes = {}
+#
+#
+# def is_parent(child, exeptions):
+#     if child in classes.keys() and child in exeptions:
+#         return True
+#     else:
+#         while classes[child] and child in classes.keys():
+#             for j in classes[child]:
+#                 if j in classes.keys() and is_parent(j, exeptions):
+#                     return True
+#             return False
+#     return False
+#
+#
+# for _ in range(int(input())):
+#     line = input().replace(':', ' ').split()
+#     classes.setdefault(line[0], [])
+#     if len(line) > 1:
+#         classes[line[0]] = line[1:]
+# exeptions = []
+# for _ in range(int(input())):
+#     exeption = input()
+#     if exeption not in exeptions and is_parent(exeption, exeptions):
+#         print(exeption)
+#     exeptions.append(exeption)
+# ----------------------------------------------------------------------------------------------------------
+
+# 2.1.2
+# Реализуйте класс PositiveList, отнаследовав его от класса list, для хранения положительных целых чисел.
+# Также реализуйте новое исключение NonPositiveError.
+# В классе PositiveList переопределите метод append(self, x) таким образом, чтобы при попытке добавить
+# неположительное целое число бросалось исключение NonPositiveError и число не добавлялось, а при попытке
+# добавить положительное целое число, число добавлялось бы как в стандартный list.
+# В данной задаче гарантируется, что в качестве аргумента x метода append всегда будет передаваться целое число.
+# # Примечание:
+# Положительными считаются числа, строго большие нуля.
+class NonPositiveError(Exception):
+    pass
 
 
-def is_parent(child, exeptions):
-    if child in classes.keys() and child in exeptions:
-        return True
-    else:
-        while classes[child] and child in classes.keys():
-            for j in classes[child]:
-                if j in classes.keys() and is_parent(j, exeptions):
-                    return True
-            return False
-    return False
-
-
-for _ in range(int(input())):
-    line = input().replace(':', ' ').split()
-    classes.setdefault(line[0], [])
-    if len(line) > 1:
-        classes[line[0]] = line[1:]
-exeptions = []
-for _ in range(int(input())):
-    exeption = input()
-    if exeption not in exeptions and is_parent(exeption, exeptions):
-        print(exeption)
-    exeptions.append(exeption)
-
+class PositiveList(list):
+    def append(self, x):
+        if x > 0:
+            super().append(x)
+        else:
+            raise NonPositiveError
