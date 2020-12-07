@@ -17,13 +17,14 @@ classes = {}
 
 
 def is_parent(child, exeptions):
-    if child in classes.keys() and classes[child] in exeptions:
+    if child in classes.keys() and child in exeptions:
         return True
     else:
         while classes[child] and child in classes.keys():
             for j in classes[child]:
                 if j in classes.keys() and is_parent(j, exeptions):
                     return True
+            return False
     return False
 
 
@@ -35,9 +36,7 @@ for _ in range(int(input())):
 exeptions = []
 for _ in range(int(input())):
     exeption = input()
-    exeptions.append(exeption)
     if exeption not in exeptions and is_parent(exeption, exeptions):
         print(exeption)
+    exeptions.append(exeption)
 
-#        and classes[exeption] in exeptions:
-#        print(exeption)
