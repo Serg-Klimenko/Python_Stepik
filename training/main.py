@@ -184,18 +184,41 @@
 # First, если первая карта бьёт вторую,
 # Second, если вторая карта бьёт первую,
 # Error, если ни одна из карт не может побить другую.
-deck = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-result = 'Error'
-first, second = input().split()
-suit = input()
-if first[-1] == second[-1]:
-    if deck.index(first[:-1]) - deck.index(second[:-1]) > 0:
-        result = 'First'
+# deck = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+# result = 'Error'
+# first, second = input().split()
+# suit = input()
+# if first[-1] == second[-1]:
+#     if deck.index(first[:-1]) - deck.index(second[:-1]) > 0:
+#         result = 'First'
+#     else:
+#         result = 'Second'
+# else:
+#     if first[-1] == suit:
+#         result = 'First'
+#     elif second[-1] == suit:
+#         result = 'Second'
+# print(result)
+# --------------------------------------------------------------------------------------------------
+# 5.9 Fizz Buzz
+# Напишите программу, которая принимает на вход два целых числа: начало и конец отрезка (оба числа
+# входят в отрезок).
+# Программа должна вывести числа из этого отрезка, но если число делится на 3, то вывести вместо него
+# Fizz, если число делится на 5, вывести вместо него Buzz, а если делится и на три, и на 5, то
+# вывести вместо этого числа FizzBuzz.
+# Формат ввода:
+# Два целых числа через пробел.
+# Формат вывода:
+# На отдельной строке каждое число из отрезка или слово, его заменяющее.
+s = input().split()
+for i in range(int(s[0]), int(s[1]) + 1, 1):
+    if i % 3 != 0 and i % 5 != 0:
+        print(i)
+        continue
+    elif i % 3 == 0 and i % 5 == 0:
+        print('FizzBuzz')
+        continue
+    if i % 3 == 0:
+        print('Fizz')
     else:
-        result = 'Second'
-else:
-    if first[-1] == suit:
-        result = 'First'
-    elif second[-1] == suit:
-        result = 'Second'
-print(result)
+        print('Buzz')
