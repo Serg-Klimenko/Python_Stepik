@@ -25,9 +25,9 @@
 #             l.pop(x)
 #
 #
-# lst = [10, 5, 8, 3]
-# modify_list(lst)
-# print(lst)
+# digits = [10, 5, 8, 3]
+# modify_list(digits)
+# print(digits)
 
 # 3.2.1 Напишите функцию update_dictionary(d, key, value), которая принимает на вход словарь d
 # и два числа: key и value.

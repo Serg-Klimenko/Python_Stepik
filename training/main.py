@@ -57,13 +57,13 @@
 # Формат вывода:
 # Строка, содержащая числа, разделённые пробелом. Числа не должны повторяться, порядок вывода
 # может быть произвольным.
-# lst = [int(i) for i in input().split()]
-# lst.sort()
+# digits = [int(i) for i in input().split()]
+# digits.sort()
 # cnt = 0
-# while cnt < len(lst):
-#     step = lst.count(lst[cnt])
+# while cnt < len(digits):
+#     step = digits.count(digits[cnt])
 #     if step > 1:
-#         print(lst[cnt], end=' ')
+#         print(digits[cnt], end=' ')
 #     cnt += step
 # -----------------------------------------------------------------------------------------------
 
@@ -77,17 +77,17 @@
 # На второй строке содержится целое число, позиции которого нужно найти.
 # Формат вывода:
 # Одна строка, в которой содержится слово "None" или через пробел перечислены числа -- позиции,
-# на которых число x встречается в списке lst. Позиции должны быть выведены в порядке возрастания.
+# на которых число x встречается в списке digits. Позиции должны быть выведены в порядке возрастания.
 
-# lst = [int(i) for i in input().split()]
+# digits = [int(i) for i in input().split()]
 # num = int(input())
-# cnt = lst.count(num)
+# cnt = digits.count(num)
 # if cnt == 0:
 #     print('None')
 # else:
 #     pos = -1
 #     for i in range(cnt):
-#         pos = lst.index(num, pos + 1)
+#         pos = digits.index(num, pos + 1)
 #         print(pos, end=' ')
 
 # 5.13 Length statistic
@@ -101,9 +101,9 @@
 # Для каждой длины слова, встречающейся в исходной строке, нужно указать количество слов с такой длиной
 # длина: количество
 # Статистика должна выводиться в порядке увеличения длины.
-# lst = input().split()
+# digits = input().split()
 # result = {}
-# for word in lst:
+# for word in digits:
 #     result.setdefault(len(word))
 #     if result[len(word)] is None:
 #         result[len(word)] = 1
