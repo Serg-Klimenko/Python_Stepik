@@ -4,6 +4,13 @@
 # 3.2.2
 # Выведите строки, содержащие "cat" в качестве слова.
 # Примечание: Для работы со словами используйте группы символов \b и \B.
+# 3.2.3
+# Вам дана последовательность строк.
+# Выведите строки, содержащие две буквы z, между которыми ровно три символа.
+# 3.2.4
+# Выведите строки, содержащие обратный слеш "\".
+# 3.2.5
+# Выведите строки, содержащие слово, состоящее из двух одинаковых частей (тандемный повтор).
 import re
 import sys
 
@@ -11,5 +18,8 @@ for line in sys.stdin:
     line = line.rstrip()
     pattern_task1 = r"(cat.*){2}"
     pattern_task2 = r"\bcat\b"
-    if re.search(pattern_task2, line) is not None:
+    pattern_task3 = r"z.{3}z"
+    pattern_task4 = r"\\"
+    pattern_task5 = r"(\b.+)\1\b"
+    if re.search(pattern_task5, line) is not None:
         print(line)
