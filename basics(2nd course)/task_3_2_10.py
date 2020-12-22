@@ -13,3 +13,10 @@ import sys
 
 for line in sys.stdin:
     line = line.rstrip()
+    if re.search(r"[^01]", line) is None:
+        even = re.findall(r"(\d)(?:\d)?", line[::-1])
+        sum_even = len(re.sub(r"(0)", "", "".join(even)))
+        odd = re.findall(r"(?:\d)(\d)?", line[::-1])
+        sum_odd = len(re.sub(r"(0)", "", "".join(odd)))
+        if (sum_odd - sum_even) % 3 == 0:
+            print(line)
